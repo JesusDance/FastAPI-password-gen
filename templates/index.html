@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='css/bootstrap.min.css') }}"/>
+</head>
+<body>
+<h1>Password generator</h1>
+<form method="post" action="/gen">
+    <label for="name">Username</label>
+    <input id="name" type="text" name="username" placeholder="Input your name">
+    <label for="pass">Password</label>
+    <input id="pass" type="text" name="password" placeholder="Input your password...">
+    <button type="submit">Generate password</button>
+    {% if my_password is not none %}
+        <p>{{my_password}}</p>
+    {% endif %}
+</form>
+</body>
+</html>

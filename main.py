@@ -17,7 +17,7 @@ Features:
 Routes:
 
 -'/': -main page
--'/gen/': - route for generating password
+-'/gen': - route for generating password
 """
 
 import random

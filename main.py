@@ -1,8 +1,30 @@
+"""
+FastAPI password generator
+
+Description:
+
+- This is a simple FastAPI password generator
+- Input "admin" into username and password
+
+Features:
+
+- using BaseModel as registration and login only for "admin"
+- using random module for generating sixteen symbols password
+- managing styles with Bootstrap
+- Jinja2 templates
+- simple Dockerfile
+
+Routes:
+
+-'/': -main page
+-'/gen/': - route for generating password
+"""
+
 import random
 from typing import Any, Annotated
 
 import uvicorn
-from fastapi import FastAPI, HTTPException, status, Form, Request
+from fastapi import FastAPI, status, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -38,8 +60,7 @@ def password_gen():
     )
 
     random.shuffle(password)
-    my_password = "".join(password)
-    return my_password
+    return "".join(password)
 
 
 @app.get("/", response_class=HTMLResponse, status_code=status.HTTP_200_OK)
@@ -58,8 +79,12 @@ def gen_pass(request: Request, data: Annotated[FormData, Form()]) -> Any:
             request=request, name="index.html", context={"my_password": my_password}
         )
     else:
-        raise HTTPException(401, "Invalid username or password")
+        return templates.TemplateResponse(
+            request=request,
+            name="index.html",
+            context={"error": "Invalid username or password"},
+        )
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)

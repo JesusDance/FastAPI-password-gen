@@ -6,16 +6,45 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='css/bootstrap.min.css') }}"/>
 </head>
 <body>
-<h1>Password generator</h1>
-<form method="post" action="/gen">
-    <label for="name">Username</label>
-    <input id="name" type="text" name="username" placeholder="Input your name...">
-    <label for="pass">Password</label>
-    <input id="pass" type="text" name="password" placeholder="Input your password...">
-    <button type="submit">Generate password</button>
-    {% if my_password is not none %}
-        <p>{{ my_password }}</p>
+<div class="d-flex flex-column align-items-center justify-content-center vh-100">
+<h1>
+    Password generator
+</h1>
+
+<form method="post"
+      action="/gen"
+      style="width: 500px">
+
+    <div class="input-group mb-3">
+    <label for="name" class="input-group-text" style="width: 95px">Username</label>
+    <input id="name"
+           class="form-control"
+           type="text"
+           name="username"
+           placeholder="Input your name...">
+    </div>
+
+    <div class="input-group mb-3">
+    <label for="pass" class="input-group-text" style="width: 95px">Password</label>
+    <input id="pass"
+           class="form-control"
+           type="text"
+           name="password"
+           placeholder="Input your password...">
+    </div>
+
+    <div class="text-center mb-3">
+        <button type="submit" class="btn btn-primary fw-bold">Generate password</button>
+    </div>
+
+    <div  class="justify-content-center text-center">
+    {% if my_password %}
+        <p class="text-success">{{ my_password }}</p>
+    {% else %}
+        <p class="text-warning">{{ error }}</p>
     {% endif %}
+    </div>
 </form>
+</div>
 </body>
 </html>

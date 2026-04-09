@@ -1,0 +1,19 @@
+# FastAPI password generator
+
+## Description:
+
+- This is a simple FastAPI password generator
+- Input "admin" into username and password
+
+##Features:
+
+- using BaseModel as registration and login only for "admin"
+- using random module for generating sixteen symbols password
+- managing styles with Bootstrap
+- Jinja2 templates
+- simple Dockerfile
+
+## Routes:
+
+-'/': -main page
+-'/gen/': - route for generating password
